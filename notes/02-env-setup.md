@@ -1,6 +1,5 @@
 - [Solidity Compiler](#solidity-compiler)
   - [Imports](#imports)
-- [Custom Mocha Tests](#custom-mocha-tests)
 - [Web3 problems](#web3-problems)
 - [Deploy Scripts](#deploy-scripts)
 - [Ganache](#ganache)
@@ -50,14 +49,6 @@ module.exports = solc.compile(source, 1).contracts[":Inbox"]; // 1 = number of c
 ```
 
 This gives us a path from the HD all the way to the CWD, then we add on the additional folder children.
-
-## Custom Mocha Tests
-
-- it = Run a test and make 1 assertion
-- describe = Groups together 'it' functions
-- beforeEach = Execute some general setup code.
-
-It's really important to test contracts as they're working with real money.
 
 ## Web3 problems
 

@@ -6,7 +6,7 @@ We can search any address, hash or block + contracts.
 
 I can copy in the address / receipt from the contract deployment to ethscan to see what just happened.
 
-![something](images/deployments.png)
+![something](../images/deployments.png)
 
 The Infura API gives us access to a node in order for web3 to access Rinkeby network.
 

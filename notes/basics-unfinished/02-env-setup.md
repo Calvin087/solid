@@ -6,7 +6,7 @@
 
 ## Solidity Compiler
 
-![something](images/layout.png)
+![something](../images/layout.png)
 
 Recently, Solidity released `version 0.5.0` and introduced many breaking changes. When running your test code you are probably getting or will probably get the following:
 
@@ -55,7 +55,7 @@ This gives us a path from the HD all the way to the CWD, then we add on the addi
 An async operation.
 Web3 gives us a way to deploy contracts to the web, it also allows us to interact with contracts that exist on the web.
 
-![something](images/web-3.png)
+![something](../images/web-3.png)
 
 There are two groups in the wild right now. V1 allows for promises and async.
 

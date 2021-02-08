@@ -1,5 +1,5 @@
-![something](images/mocha-structure.png)
-![something](images/break-down.png)
+![something](../images/mocha-structure.png)
+![something](../images/break-down.png)
 
 ## Custom Mocha Tests
 
@@ -54,7 +54,7 @@ describe("car class", () => {
 
 ## Fetching Accounts Ganache
 
-![something](images/ganache-accounts.png)
+![something](../images/ganache-accounts.png)
 
 Most of the functions in the Web3 package return promises. Instead of using .then on all of these functions we use async await.
 

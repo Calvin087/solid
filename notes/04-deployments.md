@@ -1,3 +1,11 @@
+https://rinkeby.etherscan.io/
+
+Ethscan records and diplays all transactions being made on the Rinkeby network.
+
+We can search any address, hash or block + contracts.
+
+I can copy in the address / receipt from the contract deployment to ethscan to see what just happened.
+
 ![something](images/deployments.png)
 
 The Infura API gives us access to a node in order for web3 to access Rinkeby network.

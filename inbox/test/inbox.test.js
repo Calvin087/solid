@@ -1,12 +1,15 @@
 const assert = require("assert");
 const ganache = require("ganache-cli");
 const Web3 = require("web3");
-const { interface, bytecode } = require("../compile");
 // compile produces a giant object, here we desctructure it
 // interface = ABI code
 
-const web3 = new Web3(ganache.provider()); // new instance of web3
+const provider = ganache.provider();
+const web3 = new Web3(provider);
+// new instance of web3
 // defines which network we're connecting to.
+
+const { interface, bytecode } = require("../compile");
 
 let accounts;
 let inbox;
@@ -29,10 +32,29 @@ beforeEach(async () => {
       arguments: ["Hi there!"],
     })
     .send({ from: accounts[0], gas: "1000000" });
+
+  inbox.setProvider(provider);
 });
 
 describe("Inbox", () => {
   it("deploys a contract", () => {
-    console.log(inbox);
+    // checking the the deployment worked, checking addy exists
+    assert.ok(inbox.options.address);
+  });
+
+  it("has a default message", async () => {
+    const message = await inbox.methods.message().call();
+    // We use call to recieve info
+    assert.strictEqual(message, "Hi there!");
+  });
+
+  it("changes the message", async () => {
+    await inbox.methods
+      .setMessage("noob")
+      .send({ from: accounts[0], gas: "1000000" });
+    // We use send to modify with who and how much
+    // It returns the hash / receipt if success or error
+    const message = await inbox.methods.message().call();
+    assert.strictEqual(message, "noob");
   });
 });

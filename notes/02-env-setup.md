@@ -1,6 +1,6 @@
 - [Solidity Compiler](#solidity-compiler)
   - [Imports](#imports)
-- [Web3 problems](#web3-problems)
+- [Web3 + problems](#web3--problems)
 - [Deploy Scripts](#deploy-scripts)
 - [Ganache](#ganache)
 
@@ -50,7 +50,12 @@ module.exports = solc.compile(source, 1).contracts[":Inbox"]; // 1 = number of c
 
 This gives us a path from the HD all the way to the CWD, then we add on the additional folder children.
 
-## Web3 problems
+## Web3 + problems
+
+An async operation.
+Web3 gives us a way to deploy contracts to the web, it also allows us to interact with contracts that exist on the web.
+
+![something](images/web-3.png)
 
 There are two groups in the wild right now. V1 allows for promises and async.
 

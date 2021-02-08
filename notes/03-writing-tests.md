@@ -1,4 +1,5 @@
 ![something](images/mocha-structure.png)
+![something](images/break-down.png)
 
 ## Custom Mocha Tests
 

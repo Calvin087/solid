@@ -29,6 +29,7 @@ contract Lottery {
 // kecakk256 block and diff, now = date are global
 // diff is a number
 // kecakk256 returns a hash so we convert to int
+// --"kecakk256" multiple params is deprecated--
 
     function random() private view returns(uint) {
         return uint(keccak256(block.difficulty, now, players));
@@ -37,6 +38,12 @@ contract Lottery {
     function pickWinner() public {
         uint index = random() % players.length;
 // This will return an adress in the array of players
-        players[index];
+// addresses have a built in function called transfer,
+// that can send money to them. 
+
+// this. refers to the current instance of this class
+// Balance apparently is the amount of money contained within it
+// --this.balance is deprecated--
+        players[index].transfer(this.balance);
     }
 }

@@ -52,6 +52,10 @@ contract Lottery {
 
     modifier restricted() {
         require(msg.sender == manager);
-        _;
+        _; // adds all code here
+    }
+
+    function getPlayers() public view returns (address[]){
+        return players;
     }
 }

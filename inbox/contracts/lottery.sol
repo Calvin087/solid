@@ -7,7 +7,7 @@ contract Lottery {
     address[] public players;
 
 // Constructor function, grabbing the global
-// variable msg and taking off the sender address value
+// variable msg and taking off the ".Sender" address value
     function Lottery() public {
         manager = msg.sender;
     }
@@ -35,7 +35,9 @@ contract Lottery {
         return uint(keccak256(block.difficulty, now, players));
     }
 
-    function pickWinner() public {
+    function pickWinner() public restricted {
+// ensuring that the manager is the only one that pays
+
         uint index = random() % players.length;
 // This will return an adress in the array of players
 // addresses have a built in function called transfer,
@@ -45,5 +47,11 @@ contract Lottery {
 // Balance apparently is the amount of money contained within it
 // --this.balance is deprecated--
         players[index].transfer(this.balance);
+        players = new address[](0); // [dynamic](no initialisation)
+    }
+
+    modifier restricted() {
+        require(msg.sender == manager);
+        _;
     }
 }

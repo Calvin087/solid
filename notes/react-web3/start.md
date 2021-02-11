@@ -78,3 +78,32 @@ Currently making a local copy/object of the contract that is on the blockchain
 ```js
 export default new web3.eth.Contract(abi, address);
 ```
+
+We're now able to access methods on the contract using React.
+
+**Default From:**
+When interacting with MetaMask, we don't need to specify which account we're using because meta mask is already using a deafult addy based on the user details.
+
+### Calling the methods in React
+
+Might not be the best way to do it, not sure yet, but the course mentioned componentDidMount which is older than hooks.
+
+```js
+useEffect(() => {
+  const getManager = async () => {
+    const theManager = await lottery.methods.manager().call();
+    setManager(theManager);
+  };
+  getManager();
+}, []);
+```
+
+### Balance notes
+
+When setting state for **Balance** we don't use a number, we use an empty string.
+
+It's not technically a number, it's an object wrapped in a library called bigNumberJS it's also in **wei** not ether.
+
+### Form
+
+Controlled forms == defining the value and the onchange method...

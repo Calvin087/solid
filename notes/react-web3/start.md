@@ -32,20 +32,49 @@ In react src we create a web3 config file `web3.js`
 
 - ADDITION This is needed to allow this application to interact with metamask `window.ethereum.enable();`
 
-- window.web3 coming from metamask
-
 ```js
-const currProvider = window.web3.currentProvider;
+import Web3 from "web3";
 
-const web3 = new Web3(currProvider);
+window.ethereum.enable();
 
-console.log(currProvider);
-```
+const currentProvider = window.web3.currentProvider;
+const web3 = new Web3(currentProvider);
 
-- Returns our version of web3 with metamask provider irrespective of web3 version injected by metamask
-
-```js
+console.log("prov is - ", currentProvider);
 export default web3;
 ```
 
 ---
+
+### How it works so far
+
+The compile script took out .sol code and generated an ABI/interface + Bytecode (BC is used to deploy our contract to the network)
+
+The ABI is the transition from block to JS.
+
+The ABI gets fed into the Web3 instance which creates a local copy of the contract with all of the function info, it's then deployed with an address...
+
+### Deployment
+
+Using the compile.js and deploy.js we're need to grab some info.
+
+**--Inside old project--**
+`|- deploy.js`
+
+```js
+console.log(interface);
+console.log(results.options.address);
+```
+
+`node deploy.js`
+
+**--Inside React--**
+We create a file eg: `ContractName.js`, import web3 and copy over ABI and Address
+
+Currently making a local copy/object of the contract that is on the blockchain
+
+`|- lottery.js`
+
+```js
+export default new web3.eth.Contract(abi, address);
+```

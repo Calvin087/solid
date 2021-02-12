@@ -4,6 +4,8 @@ Placing structs above all variables. Priority?
 
 Defining a struct does not instanciate a variable. It provides a type. Like address or bool.
 
+We don't have to include ref types when creating a new instance ie: `mapping`. But value types we do ie: ` `
+
 ```js
 
 struct Request {
@@ -74,6 +76,7 @@ Sometimes it refers to how it's storing variables in the contract. Memory is a t
 
 ### Saving Money / Gas
 
+**Use mappings over arrays**
 Having dynamic arrays with for loops will eventually cost tonnes of gas to calculate, basically big O problems.
 
 Avoid arrays wherever possible.
@@ -95,3 +98,30 @@ No for loops.
 
 **All values exist**
 If there is no value at the given index, instead of returning `undefined`, we'll be given a default value. Depending on the type of values we're storing ie: Map of strings, we'd get a default empty string.
+
+### Factory Contracts
+
+**Idea**
+The concept of deploying a contract that deploys other contracts.
+
+**Cost**
+Users pay for the deployment costs and the factory deploys a new instance.
+
+**References**
+The factory can track the list of deployed contracts online
+
+**msg.sender**
+The sender now becomes the factory contract so we need to pass in the person interacting with the factory as an param to create a new contract.
+
+```js
+
+contract CampaignFactory {
+   address[] public deployedCampaignns;
+
+   function createCampaign(uint minimum) public {
+       address newCapaign = new Campaign(minimum, msg.sender);
+       deployedCampaignns.push(newCapaign);
+   }
+}
+
+```

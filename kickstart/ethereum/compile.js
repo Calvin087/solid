@@ -21,8 +21,8 @@ fs.ensureDirSync(buildPath);
 
 for (let contract in output) {
   // looping out the contracts in output, saving them individually
-  fs.outputFileSync(
-    path.resolve(buildPath, contract + ".json"), // file name
+  fs.outputJSONSync(
+    path.resolve(buildPath, contract.replace(":", "") + ".json"), // file name
     output[contract] // file data, lookup contract in output variable
   );
 }

@@ -1,3 +1,7 @@
+## Never
+
+Try to assert that the total of recieved payments matches the amount of the balance attached to the contract....
+
 ## Checks effects interaction pattern
 
 Look this up for security situations. Apparently to do with the re-entry.
@@ -128,3 +132,45 @@ When the error occurs, the remaining gas is returned to the user.
 
 **Invalid op (0xfe) for Assert**
 This consumes the gas. Assert should only really be triggered if something crazy happens otherwise shouldn't come into play.
+
+### FallBack Functions
+
+No name, if you blindly send ether without using a function, it gets sent here.
+
+External only.
+
+If you don't have a function to receive money or something is wrong, the data will get dealt with by the fallback
+
+```js
+
+function () external payable {
+    receiveMoney()
+}
+
+```
+
+### View + Pure / Writing / Constant (deprecated)
+
+View returns something, looks like it simply reads the state.
+
+Pure does not interact with any storage variables. It can mess with scoped variables, like params etc but not storage vars.
+
+View can access the state BUT only in read only. They can call other view and pure but can not interact with writing functions.
+
+Pure functions can call another pure function but not others that mess with state / view / writing / storage.
+
+Writing can call both of the above and interact with state
+
+### Setters and Getters
+
+**Writing** = Transaction
+**Reading** = Call
+
+Calls are effectively free, there is a mechanism for gas, but you'd pay it back to yourself, so .... free.
+
+### Visibility.
+
+Public - internal and external.
+Private - you can not reach a private function from outside, nor parents.
+External - only call from other smart Cons,
+Internal - like private, but also from derived contracts.

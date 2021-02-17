@@ -15,6 +15,9 @@
 - [Visibility.](#visibility)
 - [Inheritance, Modifiers, Importing](#inheritance-modifiers-importing)
 - [Return Values - Event / Emit](#return-values---event--emit)
+- [ABI](#abi)
+- [Function hashes](#function-hashes)
+- [Libraries + For](#libraries--for)
 
 ## Never
 
@@ -273,3 +276,32 @@ function doSomethingElse() {
 }
 
 ```
+
+## ABI
+
+Basically a JSON file that describes all of the functions of the smart contract.
+
+## Function hashes
+
+## Libraries + For
+
+SafeMath for example protects from wraparounds and throws errors on your behalf when things go wrong using their functions.
+
+**Importing libraries from Github**
+
+Copy partial part of the url
+
+![img](images/github.png)
+
+Copy the path from the button
+
+![img](images/button.png)
+
+`https://github.com/OpenZeppelin/openzeppelin-contracts/contracts/math/SafeMath.sol`
+
+This imports the file to remix.
+
+Then instead of import keywords
+
+`using SafeMath for uint`
+using contract Name for variable type

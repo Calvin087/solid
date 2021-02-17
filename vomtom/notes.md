@@ -19,6 +19,11 @@
 - [Function hashes](#function-hashes)
 - [Libraries + For](#libraries--for)
 
+notes
+https://ethereum-blockchain-developer.com/030-shared-wallet-project/00-overview/
+
+https://www.reddit.com/r/ethereum/comments/ahm0qk/adventureum_a_textbased_crowdsourced/
+
 ## Never
 
 Try to assert that the total of recieved payments matches the amount of the balance attached to the contract....

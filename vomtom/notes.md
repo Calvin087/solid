@@ -19,10 +19,13 @@
 - [Function hashes](#function-hashes)
 - [Libraries + For](#libraries--for)
 
-notes
+**notes**
 https://ethereum-blockchain-developer.com/030-shared-wallet-project/00-overview/
 
 https://www.reddit.com/r/ethereum/comments/ahm0qk/adventureum_a_textbased_crowdsourced/
+
+**Libraries to use:**
+https://github.com/OpenZeppelin/openzeppelin-contracts
 
 ## Never
 
@@ -160,6 +163,9 @@ When the error occurs, the remaining gas is returned to the user.
 This consumes the gas. Assert should only really be triggered if something crazy happens otherwise shouldn't come into play.
 
 ## FallBack Functions
+
+NOT WORKING IN NEWEST VERSION:
+Need to find the correct way of doing it, apparently need a receive ether amount.
 
 No name, if you blindly send ether without using a function, it gets sent here.
 

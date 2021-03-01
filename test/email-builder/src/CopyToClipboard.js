@@ -1,5 +1,6 @@
-import { Button, useToast } from "@chakra-ui/react";
+import { Button, useToast, Text } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
+import AllColours from "./Colours";
 
 const CopyToClipboard = ({ emailBody }) => {
     const textAreaRef = useRef(null);
@@ -30,20 +31,36 @@ const CopyToClipboard = ({ emailBody }) => {
           button if the copy command exists */
                     document.queryCommandSupported("copy") && (
                         <div>
+                            <Text
+                                fontSize="xl"
+                                fontWeight="extrabold"
+                                mb="20px"
+                                color={AllColours.russianViolet}
+                            >
+                                Copy Template Code
+                            </Text>
+                            {/* <Text
+                                fontSize="lg"
+                                color={AllColours.mediumSizeText}
+                                mb="20px"
+                            >
+                                Or just copy the entire code to your clipboard
+                                now.
+                            </Text> */}
                             <Button
                                 variant="solid"
                                 size="md"
-                                mb="50px"
                                 borderRadius="10px"
-                                colorScheme="green"
-                                _hover={{ bg: "gray.500" }}
+                                backgroundColor={AllColours.polishedPine}
+                                color="white"
+                                _hover={{ bg: AllColours.polishedPineDark }}
                                 _active={{
-                                    bg: "gray.700",
+                                    bg: AllColours.polishedPineDark,
                                     transform: "scale(0.95)",
                                 }}
                                 onClick={copyToClipboard}
                             >
-                                Copy Template to Clipboard
+                                Copy Clipboard
                             </Button>
                         </div>
                     )

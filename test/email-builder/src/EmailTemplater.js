@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CopyToClipboard from "./CopyToClipboard";
+import AllColours from "./Colours";
 import {
     Stack,
     Input,
@@ -12,10 +13,24 @@ import {
     FormLabel,
     FormErrorMessage,
     FormHelperText,
+    Divider,
 } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
+import SideBarAccordion from "./SideBarAccordion";
+import ModalFeedbackForm from "./Modal-FeedbackForm";
+import CourseLinks from "./CourseLink";
 
 const EmailTemplater = ({ allPosts, websiteURL }) => {
-    // if the excerpt has no length / undefined, ...>0
+    const { register, handleSubmit, watch, errors } = useForm();
+    const [mainButtonText, setMainButtonText] = useState("Read The Full Post");
+    const [userEmail, setUserEmail] = useState("email@yourbusiness.com");
+    const [userLogoWidth, setUserLogoWidth] = useState(80);
+    const [userContactUsText, setUserContactUsText] = useState(
+        "Have a question?"
+    );
+    const [logo, setLogo] = useState(
+        "https://raw.githubusercontent.com/Calvin087/email-builder/master/email-header.png"
+    );
 
     // Starting Default Image Store
     const defaultThumbnail =
@@ -23,9 +38,6 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
 
     const defaultHeroImg =
         "https://raw.githubusercontent.com/Calvin087/email-builder/master/default-hero-image-small.jpg";
-
-    const logo =
-        "https://raw.githubusercontent.com/Calvin087/email-builder/master/email-header.png";
 
     // Starting Hero Post
     const heroPost = allPosts[0];
@@ -38,7 +50,37 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
 
     // Starting Other Posts
     const otherPosts = allPosts.slice(1, 5);
-    console.log(heroExcerpt);
+
+    // Client Changing Functions
+    const changeButtonText = (data) => {
+        if (data.buttonText.length === 0) {
+            setMainButtonText("Read The Full Post");
+        } else {
+            setMainButtonText(data.buttonText);
+        }
+    };
+
+    const changeLogo = (data) => {
+        if (data.userLogo.length > 0 && data.userLogo.includes("http")) {
+            setLogo(data.userLogo);
+            setUserLogoWidth(150);
+        } else {
+            setLogo(
+                "https://raw.githubusercontent.com/Calvin087/email-builder/master/email-header.png"
+            );
+            setUserLogoWidth(80);
+        }
+    };
+
+    const changeContactUsText = (data) => {
+        if (data.contactUsText.length > 0) {
+            setUserContactUsText(data.contactUsText);
+        }
+    };
+
+    const changeEmailAddress = (data) => {
+        setUserEmail(data.newEmail);
+    };
 
     // Starting Post Inserts
     const smallPostInsert = otherPosts
@@ -329,16 +371,16 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
                                             border="0"
                                             vspace="0"
                                             hspace="0"
-                                            src=${logo}
-                                            width="60"
-                                            height="60"
+                                            src="${logo}"
+                                            width="${userLogoWidth}px"
+                                            height="auto"
                                             alt="Logo"
                                             title="Logo"
                                             style="
                                                 color: #000000;
                                                 font-size: 10px;
                                                 margin: 0;
-                                                padding: 0;
+                                                padding: 5px;
                                                 outline: none;
                                                 text-decoration: none;
                                                 -ms-interpolation-mode: bicubic;
@@ -520,7 +562,7 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
                                                         "
                                                         href="${heroPost.link}"
                                                     >
-                                                        Read The Full Post
+                                                        ${mainButtonText}
                                                     </a>
                                                 </td>
                                             </tr>
@@ -668,9 +710,9 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
                                     "
                                     class="paragraph"
                                 >
-                                    Have a&nbsp;question?
+                                    ${userContactUsText}
                                     <a
-                                        href="mailto:email@yourbusiness.com"
+                                        href="mailto:${userEmail}"
                                         target="_blank"
                                         style="
                                             color: #127db3;
@@ -679,7 +721,7 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
                                             font-weight: 400;
                                             line-height: 160%;
                                         "
-                                        >email@yourbusiness.com</a
+                                        >${userEmail}</a
                                     >
                                 </td>
                             </tr>
@@ -743,7 +785,10 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
                                             >
                                                 <a
                                                     target="_blank"
-                                                    href="${websiteURL}"
+                                                    href="${
+                                                        websiteURL +
+                                                        "/facebook-link"
+                                                    }"
                                                     style="text-decoration: none"
                                                     ><img
                                                         border="0"
@@ -781,7 +826,10 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
                                             >
                                                 <a
                                                     target="_blank"
-                                                    href="${websiteURL}"
+                                                    href="${
+                                                        websiteURL +
+                                                        "/twitter-link"
+                                                    }"
                                                     style="text-decoration: none"
                                                     ><img
                                                         border="0"
@@ -819,7 +867,10 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
                                             >
                                                 <a
                                                     target="_blank"
-                                                    href="${websiteURL}"
+                                                    href="${
+                                                        websiteURL +
+                                                        "/instagram-link"
+                                                    }"
                                                     style="text-decoration: none"
                                                     ><img
                                                         border="0"
@@ -857,7 +908,10 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
                                             >
                                                 <a
                                                     target="_blank"
-                                                    href="${websiteURL}"
+                                                    href="${
+                                                        websiteURL +
+                                                        "/linkedin-link"
+                                                    }"
                                                     style="text-decoration: none"
                                                     ><img
                                                         border="0"
@@ -907,9 +961,11 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
                                     "
                                     class="footer"
                                 >
-                                    You're being sent this email because you're awesome.<br>
                                     <a
-                                        href="${websiteURL}"
+                                        href="${
+                                            websiteURL +
+                                            "/ubsubscribe-link-goes-here"
+                                        }"
                                         target="_blank"
                                         style="
                                             text-decoration: underline;
@@ -919,7 +975,7 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
                                             font-weight: 400;
                                             line-height: 150%;
                                         "
-                                        >Change your subscription here</a
+                                        >unsubscribe</a
                                     >
 
                                     <img
@@ -950,28 +1006,200 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
 
     return (
         <div>
-            <Flex
-                pl="10vw"
-                pt="5vh"
-                flexDirection="row"
-                justifyContent="space-between"
-            >
-                <Box width="30%" pr="5vw">
+            <Flex flexDirection="row" justifyContent="space-between">
+                <Box width="30%" px="4%" py="5%">
                     <Flex
                         flexDirection="column"
                         alignItems="flex-start"
                         justifyContent="space-between"
                     >
-                        <CopyToClipboard emailBody={mainEmailBody} />
+                        <Box mb={"30px"}>
+                            <ModalFeedbackForm />
+                        </Box>
 
-                        <Text fontSize="lg">Add Your Logo Here</Text>
-                        <Input />
+                        <Divider mb={"30px"} />
+
+                        <CopyToClipboard emailBody={mainEmailBody} />
+                        <Text
+                            fontSize="xl"
+                            fontWeight="extrabold"
+                            color={AllColours.russianViolet}
+                            pb="10px"
+                        >
+                            Customisations
+                        </Text>
+                        <SideBarAccordion>
+                            {/* Logo Image changer */}
+                            <Text
+                                fontSize="md"
+                                fontWeight="extrabold"
+                                color={AllColours.russianViolet}
+                                mt="20px"
+                                pb="10px"
+                            >
+                                Your Logo URL
+                            </Text>
+                            <Box as="form" onSubmit={handleSubmit(changeLogo)}>
+                                <Input
+                                    name="userLogo"
+                                    size="sm"
+                                    borderRadius="5px"
+                                    placeholder={websiteURL + "/logo-url"}
+                                    ref={register({ required: false })}
+                                />
+                                <Button
+                                    mt="15px"
+                                    mb="35px"
+                                    variant="solid"
+                                    size="sm"
+                                    borderRadius="5px"
+                                    type="submit"
+                                    backgroundColor={AllColours.polishedPine}
+                                    color="white"
+                                    _hover={{ bg: AllColours.polishedPineDark }}
+                                    _active={{
+                                        bg: AllColours.polishedPineDark,
+                                        transform: "scale(0.95)",
+                                    }}
+                                >
+                                    Add it
+                                </Button>
+                            </Box>
+
+                            {/* Button Text Changer */}
+                            <Text
+                                fontSize="md"
+                                fontWeight="extrabold"
+                                color={AllColours.russianViolet}
+                                pb="10px"
+                            >
+                                Button Text
+                            </Text>
+                            <Box
+                                as="form"
+                                onSubmit={handleSubmit(changeButtonText)}
+                            >
+                                <Input
+                                    name="buttonText"
+                                    size="sm"
+                                    borderRadius="5px"
+                                    placeholder={"Read The Full Post"}
+                                    ref={register({ required: false })}
+                                />
+                                <Button
+                                    mt="15px"
+                                    mb="35px"
+                                    variant="solid"
+                                    size="sm"
+                                    borderRadius="5px"
+                                    type="submit"
+                                    backgroundColor={AllColours.polishedPine}
+                                    color="white"
+                                    _hover={{ bg: AllColours.polishedPineDark }}
+                                    _active={{
+                                        bg: AllColours.polishedPineDark,
+                                        transform: "scale(0.95)",
+                                    }}
+                                >
+                                    Update It
+                                </Button>
+                            </Box>
+
+                            {/* Question Text Changer */}
+                            <Text
+                                fontSize="md"
+                                fontWeight="extrabold"
+                                color={AllColours.russianViolet}
+                                pb="10px"
+                            >
+                                Contact Us Text
+                            </Text>
+                            <Box
+                                as="form"
+                                onSubmit={handleSubmit(changeContactUsText)}
+                            >
+                                <Input
+                                    name="contactUsText"
+                                    size="sm"
+                                    borderRadius="5px"
+                                    placeholder="Have a question?"
+                                    ref={register({ required: false })}
+                                />
+                                <Button
+                                    mt="15px"
+                                    mb="35px"
+                                    variant="solid"
+                                    size="sm"
+                                    borderRadius="5px"
+                                    type="submit"
+                                    backgroundColor={AllColours.polishedPine}
+                                    color="white"
+                                    _hover={{ bg: AllColours.polishedPineDark }}
+                                    _active={{
+                                        bg: AllColours.polishedPineDark,
+                                        transform: "scale(0.95)",
+                                    }}
+                                >
+                                    Change It
+                                </Button>
+                            </Box>
+                            {/* EmailTo Changer */}
+                            <Text
+                                fontSize="md"
+                                fontWeight="extrabold"
+                                color={AllColours.russianViolet}
+                                pb="10px"
+                            >
+                                Your Contact Email
+                            </Text>
+                            <Box
+                                as="form"
+                                onSubmit={handleSubmit(changeEmailAddress)}
+                            >
+                                <Input
+                                    name="newEmail"
+                                    size="sm"
+                                    borderRadius="5px"
+                                    placeholder="email@yourbusiness.com"
+                                    ref={register({ required: false })}
+                                />
+                                <Button
+                                    mt="15px"
+                                    mb="35px"
+                                    variant="solid"
+                                    size="sm"
+                                    borderRadius="5px"
+                                    type="submit"
+                                    backgroundColor={AllColours.polishedPine}
+                                    color="white"
+                                    _hover={{ bg: AllColours.polishedPineDark }}
+                                    _active={{
+                                        bg: AllColours.polishedPineDark,
+                                        transform: "scale(0.95)",
+                                    }}
+                                >
+                                    Place It
+                                </Button>
+                            </Box>
+                        </SideBarAccordion>
                     </Flex>
+                    <Divider mb="30px" mt="30px" />
+
+                    <CourseLinks />
                 </Box>
-                <Box width="100%">
-                    <div
-                        dangerouslySetInnerHTML={{
-                            __html: mainEmailBody,
+
+                <Box width="100%" overflow="hidden">
+                    <iframe
+                        title="This is a unique title"
+                        src={
+                            "data:text/html," +
+                            encodeURIComponent(mainEmailBody)
+                        }
+                        style={{
+                            width: "105%",
+                            height: "150vh",
+                            overflow: "auto",
+                            borderWidth: "0",
                         }}
                     />
                 </Box>
@@ -981,19 +1209,3 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
 };
 
 export default EmailTemplater;
-
-{
-    /* <iframe
-                        title="This is a unique title"
-                        src={
-                            "data:text/html," +
-                            encodeURIComponent(mainEmailBody)
-                        }
-                        style={{
-                            width: "100%",
-                            height: "100vh",
-                            overflow: "auto",
-                            borderWidth: "0",
-                        }}
-                    /> */
-}

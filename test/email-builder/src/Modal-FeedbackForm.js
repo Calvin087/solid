@@ -32,7 +32,7 @@ function ModalFeedbackForm() {
                     color: "white",
                 }}
             >
-                Feedback or Bugs 👋
+                Feedback / Bugs 👋
             </Button>
 
             <Modal isOpen={isOpen} onClose={onClose} size={"2xl"}>

@@ -1006,18 +1006,27 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
 
     return (
         <div>
-            <Flex flexDirection="row" justifyContent="space-between">
-                <Box width="30%" px="4%" py="5%">
+            <Flex
+                flexDirection={{ lg: "row", sm: "column" }}
+                justifyContent="space-between"
+                boxShadow="inner"
+            >
+                <Box width={{ lg: "30%", sm: "100%" }} px="4%" py="4%">
                     <Flex
                         flexDirection="column"
                         alignItems="flex-start"
                         justifyContent="space-between"
                     >
-                        <Box mb={"30px"}>
+                        <Box
+                            pos="fixed"
+                            bottom
+                            right
+                            w="160px"
+                            h="50px"
+                            zIndex={2}
+                        >
                             <ModalFeedbackForm />
                         </Box>
-
-                        <Divider mb={"30px"} />
 
                         <CopyToClipboard emailBody={mainEmailBody} />
                         <Text

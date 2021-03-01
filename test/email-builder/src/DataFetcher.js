@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import EmailTemplater from "./EmailTemplater";
 import Instructions from "./Instructions";
 import { useForm } from "react-hook-form";
+import MobileWarningBanner from "./MobileWarningBanner";
 import {
     Input,
     Flex,
@@ -14,9 +15,11 @@ import {
     useToast,
     Radio,
     RadioGroup,
+    Badge,
 } from "@chakra-ui/react";
 
 import AllColours from "./Colours";
+import Footer from "./Footer";
 
 const DataFetcher = () => {
     const [postData, setPostData] = useState([]);
@@ -73,7 +76,7 @@ const DataFetcher = () => {
     return (
         <div>
             <Flex
-                bgImage="url('/images/bg2.jpg')"
+                // bgImage="url('/images/bg2.jpg')"
                 bgColor="#fffffff0"
                 bgPosition="center"
                 bgRepeat="no-repeat"
@@ -86,21 +89,24 @@ const DataFetcher = () => {
                 py="40px"
             >
                 <Text
+                    bgGradient="linear(to-t, #3f1349,#7c3d8e)"
+                    bgClip="text"
                     fontSize="5xl"
                     fontWeight="extrabold"
-                    color={AllColours.russianViolet}
+                    // color={AllColours.russianViolet}
                     pb="20px"
                 >
                     Wordpress To Email
                 </Text>
-
                 <Text fontSize="xl" color={AllColours.maximumPurple}>
                     Turn your client's Wordpress articles into beautiful
                 </Text>
                 <Text fontSize="xl" color={AllColours.maximumPurple} mb="30px">
-                    email newsletters in seconds.
+                    <span style={{ color: AllColours.russianViolet }}>
+                        Mobile-Ready{" "}
+                    </span>
+                    newsletters in.....like seconds.
                 </Text>
-
                 <Box
                     as="form"
                     onSubmit={handleSubmit(onSubmit)}

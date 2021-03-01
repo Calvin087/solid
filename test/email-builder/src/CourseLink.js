@@ -11,21 +11,35 @@ const CourseLinks = () => {
             mt="25px"
         >
             <Text
-                fontSize="xl"
+                fontSize="lg"
                 fontWeight="extrabold"
                 color={AllColours.russianViolet}
                 pb="10px"
             >
-                Become an Email Marketing Guru
+                10x Your Campaigns
             </Text>
-            <Image
-                height="auto"
-                width="100%"
-                src="./images/video-shot-sm.png"
-            />
-            <Text pt="15px" pb="20px">
-                10 essential automations and the psychological triggers to
-                guarantee subscriber action.
+            <Link
+                href="https://email-loyalty.thinkific.com/courses/email-loyalty-full-plus"
+                isExternal
+            >
+                <Image
+                    height="auto"
+                    width="100%"
+                    src="./images/video-shot-sm.png"
+                    boxShadow="md"
+                />
+            </Link>
+            <Text pt="15px" fontSize="lg" fontWeight="bold">
+                10 campaigns to get you immediate results.
+            </Text>
+            <Text
+                pt="5px"
+                pb="20px"
+                fontSize="sm"
+                color={AllColours.mediumSizeText}
+            >
+                Discover all the ways to use psychological triggers in your
+                marketing and guarantee subscriber action.
             </Text>
             <Link
                 href="https://email-loyalty.thinkific.com/courses/email-loyalty-full-plus"

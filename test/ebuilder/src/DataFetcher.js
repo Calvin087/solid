@@ -26,7 +26,6 @@ const DataFetcher = () => {
     const [websiteURL, setWebsiteURL] = useState("");
     const [websiteError, setWebsiteError] = useState(null);
     const [isButtonLoading, setIsButtonLoading] = useState(false);
-    const [httpValue, setHttpValue] = useState("http://");
     const toast = useToast();
 
     const wpAPI = "/wp-json/wp/v2/posts?_embed";
@@ -46,7 +45,7 @@ const DataFetcher = () => {
     };
 
     const urlPrefixChecker = (url) => {
-        return url.includes("http") ? url : httpValue + url;
+        return url.includes("https") ? url : "https://" + url;
     };
 
     const onSubmit = (data) => {
@@ -69,7 +68,9 @@ const DataFetcher = () => {
                 setPostData(data);
             })
             .catch((error) => {
-                noPostWarning("Please check the url is correct");
+                noPostWarning(
+                    "Is the site missing an SSL / `Https` certificate?"
+                );
             });
     };
 
@@ -91,61 +92,37 @@ const DataFetcher = () => {
                 <Text
                     bgGradient="linear(to-t, #3f1349,#7c3d8e)"
                     bgClip="text"
-                    fontSize="5xl"
+                    fontSize={{ base: "4xl", sm: "5xl" }}
                     fontWeight="extrabold"
                     // color={AllColours.russianViolet}
                     pb="20px"
+                    align="center"
                 >
                     Wordpress To Email
                 </Text>
-                <Text fontSize="xl" color={AllColours.maximumPurple}>
-                    Turn your client's Wordpress articles into beautiful
-                </Text>
-                <Text fontSize="xl" color={AllColours.maximumPurple} mb="30px">
+
+                <Text
+                    fontSize="xl"
+                    color={AllColours.maximumPurple}
+                    align="center"
+                    width={{ base: "80%", sm: "500px" }}
+                >
+                    Turn your client's Wordpress articles into beautiful{" "}
                     <span style={{ color: AllColours.russianViolet }}>
                         Mobile-Ready{" "}
                     </span>
                     newsletters in.....like seconds.
                 </Text>
-                <Box
-                    as="form"
-                    onSubmit={handleSubmit(onSubmit)}
-                    width="40%"
-                    align="center"
-                >
-                    <RadioGroup onChange={setHttpValue} value={httpValue}>
-                        <Stack
-                            direction="row"
-                            align="center"
-                            justify="space-evenly"
-                        >
-                            <Radio colorScheme="blackAlpha" value="http://">
-                                <Text
-                                    color={AllColours.mediumSizeText}
-                                    fontWeight="bold"
-                                >
-                                    http://
-                                </Text>
-                            </Radio>
-                            <Radio colorScheme="blackAlpha" value="https://">
-                                <Text
-                                    color={AllColours.mediumSizeText}
-                                    fontWeight="bold"
-                                >
-                                    https://
-                                </Text>
-                            </Radio>
-                        </Stack>
-                    </RadioGroup>
 
-                    <Stack spacing={4}>
+                <Box as="form" onSubmit={handleSubmit(onSubmit)} align="center">
+                    <Stack spacing={4} width={{ base: "350px", sm: "500px" }}>
                         <InputGroup
-                            size="md"
-                            mt="30px"
+                            size="lg"
+                            mt="50px"
                             borderColor={AllColours.russianVioletTrans}
                         >
                             <InputLeftAddon
-                                children={httpValue}
+                                children="https://"
                                 backgroundColor="#fff"
                                 color={AllColours.mediumSizeText}
                             />
@@ -157,6 +134,22 @@ const DataFetcher = () => {
                                 ref={register({ required: true })}
                             />
                         </InputGroup>
+
+                        <Box align="center" width="100%">
+                            <Text
+                                fontSize="sm"
+                                color={AllColours.mediumSizeText}
+                                align="center"
+                                width={{ base: "100%", sm: "500px" }}
+                            >
+                                <span
+                                    style={{ color: AllColours.russianViolet }}
+                                >
+                                    Required:
+                                </span>{" "}
+                                "https" secure site &amp; Post Excerpts
+                            </Text>
+                        </Box>
                     </Stack>
 
                     {isButtonLoading && postData.length === 0 ? (

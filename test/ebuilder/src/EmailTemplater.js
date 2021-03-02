@@ -19,6 +19,7 @@ import { useForm } from "react-hook-form";
 import SideBarAccordion from "./SideBarAccordion";
 import ModalFeedbackForm from "./Modal-FeedbackForm";
 import CourseLinks from "./CourseLink";
+import AffiliateLinks from "./AffiliatLinks";
 
 const EmailTemplater = ({ allPosts, websiteURL }) => {
     const { register, handleSubmit, watch, errors } = useForm();
@@ -1007,7 +1008,7 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
     return (
         <div>
             <Flex
-                flexDirection={{ lg: "row", sm: "column" }}
+                flexDirection={{ base: "column", md: "row" }}
                 justifyContent="space-between"
                 boxShadow="inner"
             >
@@ -1195,6 +1196,7 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
                     <Divider mb="30px" mt="30px" />
 
                     <CourseLinks />
+                    <AffiliateLinks />
                 </Box>
 
                 <Box width="100%" overflow="hidden">
@@ -1206,7 +1208,7 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
                         }
                         style={{
                             width: "105%",
-                            height: "150vh",
+                            height: "200vh",
                             overflow: "auto",
                             borderWidth: "0",
                         }}

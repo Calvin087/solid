@@ -42,7 +42,8 @@ const Footer = () => {
                     Calvin Torra
                 </Link>
             </Text>
-            <Text>👀&nbsp;&nbsp;No tracking, no cookies 🍪</Text>
+            <Text>👀&nbsp;&nbsp;No tracking, no cookies 🍪&nbsp;, but</Text>
+            <Text>There are some affiliate links</Text>
         </Flex>
     );
 };

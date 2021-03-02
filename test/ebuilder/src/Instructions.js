@@ -6,22 +6,22 @@ const Instructions = () => {
     return (
         <Flex justifyContent="center" alignItems="center">
             <Flex
-                width={{ sm: "80%" }}
+                width={{ base: "80%", lg: "1200px" }}
                 justifyContent="center"
                 alignItems="center"
-                flexDirection="row"
+                flexDirection={{ base: "column", lg: "row" }}
                 flexWrap="wrap"
                 display="flex"
                 opacity={1}
                 mt="50px"
-                mb="130px"
+                mb={{ base: "30px", sm: "200px" }}
             >
                 <Flex
                     flexDirection="column"
                     justifyContent="center"
                     alignItems="center"
-                    width={{ sm: "100%", lg: "30%" }}
-                    mb={{ sm: "50px", xl: "0px" }}
+                    width={{ base: "100%", lg: "30%" }}
+                    mb={{ base: "50px", sm: "80px" }}
                 >
                     <Image
                         height="64px"
@@ -47,8 +47,8 @@ const Instructions = () => {
                     flexDirection="column"
                     justifyContent="center"
                     alignItems="center"
-                    width={{ sm: "100%", lg: "30%" }}
-                    mb={{ sm: "50px", xl: "0px" }}
+                    width={{ base: "100%", lg: "30%" }}
+                    mb={{ base: "50px", sm: "80px" }}
                 >
                     <Image
                         height="64px"
@@ -74,8 +74,8 @@ const Instructions = () => {
                     flexDirection="column"
                     justifyContent="center"
                     alignItems="center"
-                    width={{ sm: "100%", lg: "30%" }}
-                    mb={{ sm: "50px", xl: "0px" }}
+                    width={{ base: "100%", lg: "30%" }}
+                    mb={{ base: "50px", sm: "80px" }}
                 >
                     <Image
                         height="64px"

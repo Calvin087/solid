@@ -2,13 +2,13 @@ import React from "react";
 import { Button, Flex, Image, Text, Link } from "@chakra-ui/react";
 import AllColours from "./Colours";
 
-const CourseLinks = () => {
+const AffiliateLinks = () => {
     return (
         <Flex
             flexDirection="column"
             justifyContent="flex-start"
             alignItems="flex-start"
-            mt="25px"
+            mt="50px"
         >
             <Text
                 fontSize="lg"
@@ -16,33 +16,32 @@ const CourseLinks = () => {
                 color={AllColours.russianViolet}
                 pb="10px"
             >
-                10x Your Campaigns
+                Send Your Campaign Free
             </Text>
             <Link
-                href="https://email-loyalty.thinkific.com/courses/email-loyalty-full-plus"
+                href="https://www.mailerlite.com/a/vhtiamoopy
+"
                 isExternal
             >
                 <Image
                     height="auto"
                     width="100%"
-                    src="./images/video-shot-sm.png"
+                    src="./images/mailer-lite.jpg"
                     boxShadow="md"
                 />
             </Link>
-            <Text pt="15px" fontSize="lg" fontWeight="bold">
-                10 campaigns to get you immediate results.
-            </Text>
             <Text
-                pt="5px"
+                pt="20px"
                 pb="20px"
                 fontSize="sm"
                 color={AllColours.mediumSizeText}
             >
-                Discover all the ways to use psychological triggers in your
-                marketing and guarantee subscriber action.
+                MailerLite is a beginner-friendly tool that comes packed with
+                advanced features for all of your email marketing needs.
             </Text>
             <Link
-                href="https://email-loyalty.thinkific.com/courses/email-loyalty-full-plus"
+                href="https://www.mailerlite.com/a/vhtiamoopy
+"
                 isExternal
             >
                 <Button
@@ -56,13 +55,12 @@ const CourseLinks = () => {
                         bg: AllColours.polishedPineDark,
                         transform: "scale(0.95)",
                     }}
-                    // onClick={copyToClipboard}
                 >
-                    Learn Now
+                    Learn More
                 </Button>
             </Link>
         </Flex>
     );
 };
 
-export default CourseLinks;
+export default AffiliateLinks;

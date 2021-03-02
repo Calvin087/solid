@@ -6,13 +6,16 @@ const MobileWarningBanner = () => {
         <Flex
             justifyContent="center"
             alignItems="center"
-            flexDirection="row"
+            flexDirection="column"
             backgroundColor="red.500"
             padding="10px"
             display={{ sm: "none" }}
         >
-            <Text color="white">
-                You really can't do this on mobile. Go get your computer.
+            <Text color="white" align="center">
+                You really can't do this on mobile.
+            </Text>
+            <Text color="white" align="center">
+                Go get your computer.
             </Text>
         </Flex>
     );

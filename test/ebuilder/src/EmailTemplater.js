@@ -172,6 +172,7 @@ const EmailTemplater = ({ allPosts, websiteURL }) => {
         .join("");
 
     const mainEmailBody = `<html xmlns="http://www.w3.org/1999/xhtml">
+    <!-- base design created by https://github.com/konsav -->
         <head>
             <meta http-equiv="content-type" content="text/html; charset=utf-8" />
             <meta
